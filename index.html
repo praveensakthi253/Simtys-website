@@ -698,7 +698,7 @@ img,video{max-width:100%;height:auto}
 <!-- HERO -->
 <section class="hero" id="hero">
   <div class="hero-slide active" id="slide0" onclick="nav('product',0)" style="cursor:pointer">
-    <img src="images/doitfortheplotmodel2.png" alt="Do It For The Kathai">
+    <img id="heroImg0" alt="Do It For The Kathai">
     <div class="hero-overlay"></div>
   </div>
   <div class="hero-slide" id="slide1" onclick="nav('product',1)" style="cursor:pointer">
@@ -1190,7 +1190,6 @@ function nav(page,arg){
 let slideTimer,curSlide=0;
 function initHome(){
   curSlide=0;['slide0','slide1','slide2'].forEach((id,i)=>{document.getElementById(id).classList.toggle('active',i===0)});
-  ['num0','num1','num2'].forEach((id,i)=>{document.getElementById(id).classList.toggle('active',i===0)});
   resetProg();clearInterval(slideTimer);slideTimer=setInterval(nextSlide,4400);
   // parallax
   window.addEventListener('scroll',homeScroll,{passive:true});
@@ -1206,9 +1205,9 @@ function homeScroll(){
   if(si){const r=si.parentElement.getBoundingClientRect();const mid=(r.top+r.bottom)/2-window.innerHeight/2;si.style.transform=`scale(1.04) translateY(${mid*0.04}px)`}
 }
 function goSlide(n){
-  document.getElementById('slide'+curSlide).classList.remove('active');document.getElementById('num'+curSlide).classList.remove('active');
+  document.getElementById('slide'+curSlide).classList.remove('active');
   curSlide=n;
-  document.getElementById('slide'+curSlide).classList.add('active');document.getElementById('num'+curSlide).classList.add('active');
+  document.getElementById('slide'+curSlide).classList.add('active');
   resetProg();
 }
 function nextSlide(){goSlide((curSlide+1)%3)}
