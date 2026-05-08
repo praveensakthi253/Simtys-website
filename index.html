@@ -1192,8 +1192,7 @@ function homeScroll(){
   document.getElementById('mainNav').classList.toggle('dark',!past);
   document.getElementById('mainNav').classList.toggle('light',past);
   document.body.classList.toggle('c-dark',window.scrollY<window.innerHeight*.85);
-  const band=document.getElementById('parallaxBand'),bg=document.getElementById('parallaxBg');
-  if(band){const r=band.getBoundingClientRect();const prog=1-r.bottom/(window.innerHeight+r.height);bg.style.transform=`translateY(${prog*70}px)`}
+  // parallax band removed
   const si=document.getElementById('storyParallaxImg');
   if(si){const r=si.parentElement.getBoundingClientRect();const mid=(r.top+r.bottom)/2-window.innerHeight/2;si.style.transform=`scale(1.04) translateY(${mid*0.04}px)`}
 }
