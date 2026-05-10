@@ -663,7 +663,7 @@ nav.dark .nav-logo-text{font-family:'Playfair Display',Georgia,serif;font-weight
 nav.light .nav-logo-text{font-family:'Playfair Display',Georgia,serif;font-weight:900;font-style:italic;font-size:17px;letter-spacing:-.01em;text-transform:lowercase;color:inherit;white-space:nowrap;transition:color .3s}
 </style>
 <script src="https://js.stripe.com/v3/"></script>
-<script src="https://js.stripe.com/v3/"></script>
+
 </head>
 <body>
 
@@ -1393,7 +1393,7 @@ function renderChkAll(){
     <div class="ci-price">SGD ${(p.price*item.qty).toFixed(2)}</div>`;rows.appendChild(d);
   });
   // summary sidebar
-  const osItems=document.getElementById('chkOsItems');osItems.innerHTML='';
+  const osItems=document.getElementById('chkOsItems');if(!osItems)return;osItems.innerHTML='';
   if(!cart.length){osItems.innerHTML='<div style="font-family:var(--mono);font-size:10px;color:var(--gray);letter-spacing:.1em">Your bag is empty.</div>'}
   cart.forEach(item=>{
     const p=PRODS[item.pid];const d=document.createElement('div');d.className='os-item';
@@ -1430,7 +1430,7 @@ async function initStripeElement(){
   const phone=(document.getElementById('chkPhone')||{value:''}).value.trim();
   const address=(document.getElementById('chkAddress')||{value:''}).value.trim();
   const postal=(document.getElementById('chkPostal')||{value:''}).value.trim();
-  const fullName=(firstName+' '+lastName).trim();
+  const fullName=(firstName+' '+lastName).trim()||email.split('@')[0];
   if(!email||!email.includes('@')){showToast('Please enter your email');el.innerHTML='';return}
   if(!studentId||studentId.length<4){showToast('Please enter your Student ID');el.innerHTML='';return}
   if(!firstName){showToast('Please enter your name');el.innerHTML='';return}
