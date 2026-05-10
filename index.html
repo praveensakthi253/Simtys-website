@@ -1353,6 +1353,7 @@ function notifyTickets(){
   document.getElementById('ticketEmail').disabled=true;
 }
 
+function addHover(sel){}
 function pdDoAdd(btn){
   if(!pdSelSz){const sc=document.getElementById('pdSizeChips');sc.style.animation='shake .4s';sc.addEventListener('animationend',()=>sc.style.animation='',{once:true});showToast('Please select a size');return}
   addToCart(pdCurrent.id,btn,pdSelSz);
@@ -1374,7 +1375,7 @@ function setChkStep(n){
   chkStep=n;
   document.getElementById('chkStep1').style.display=n===1?'block':'none';
   document.getElementById('chkStep2').style.display=n===2?'block':'none';
-  document.getElementById('chkStep3').style.display=n===3?'block':'none';
+  if(document.getElementById('chkStep3'))document.getElementById('chkStep3').style.display=n===3?'block':'none';
   ['stInd1','stInd2','stInd3'].forEach((id,i)=>{const el=document.getElementById(id);el.classList.remove('active','done');if(i+1<n)el.classList.add('done');if(i+1===n)el.classList.add('active')});
   const cta=document.getElementById('chkCta'),back=document.getElementById('chkBack');
   if(n===1){cta.textContent='CONTINUE →';cta.style.display='';back.style.display='none'}
