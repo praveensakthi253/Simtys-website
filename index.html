@@ -1419,9 +1419,12 @@ function applyPromo(){
 }
 function selPay(el){document.querySelectorAll('.pay-opt').forEach(o=>o.classList.remove('selected'));el.classList.add('selected')}
 async function initStripeElement(){
-  if(stripePaymentEl&&_clientSecret)return;stripePaymentEl=null;
   const el=document.getElementById('stripe-payment-element');
   if(!el)return;
+  // If already mounted successfully, don't re-init
+  if(_clientSecret&&stripePaymentEl){return}
+  // Reset state
+  stripePaymentEl=null;stripeElements=null;
   el.innerHTML='<div style="padding:20px;text-align:center;font-family:monospace;font-size:11px;color:#888;letter-spacing:.1em">LOADING PAYMENT...</div>';
   const email=(document.getElementById('chkEmail')||{value:''}).value.trim();
   const firstName=(document.getElementById('chkFirstName')||{value:''}).value.trim();
@@ -1430,10 +1433,9 @@ async function initStripeElement(){
   const phone=(document.getElementById('chkPhone')||{value:''}).value.trim();
   const address=(document.getElementById('chkAddress')||{value:''}).value.trim();
   const postal=(document.getElementById('chkPostal')||{value:''}).value.trim();
-  const fullName=(firstName+' '+lastName).trim()||email.split('@')[0];
+  const fullName=(firstName+' '+lastName).trim()||'Customer';
   if(!email||!email.includes('@')){showToast('Please enter your email');el.innerHTML='';return}
   if(!studentId||studentId.length<4){showToast('Please enter your Student ID');el.innerHTML='';return}
-  if(!firstName){showToast('Please enter your name');el.innerHTML='';return}
   if(!cart||cart.length===0){showToast('Cart is empty');el.innerHTML='';return}
   const items=cart.map(function(i){return{sku:i.sku,size:i.size,quantity:i.qty||1}});
   try{
@@ -1445,11 +1447,22 @@ async function initStripeElement(){
     const elements=stripe.elements({clientSecret:_clientSecret,appearance:{theme:'stripe',variables:{colorPrimary:'#1A1A1A',colorBackground:'#F9F9F9',colorText:'#1A1A1A',colorDanger:'#e74c3c',fontFamily:'Inter,sans-serif',borderRadius:'4px',fontSizeBase:'13px'}}});
     stripeElements=elements;
     stripePaymentEl=elements.create('payment',{layout:{type:'tabs',defaultCollapsed:false}});
-    el.innerHTML='';stripePaymentEl.mount('#stripe-payment-element');
+    el.innerHTML='';
+    try{
+      stripePaymentEl.mount('#stripe-payment-element');
+      console.log('Stripe element mounted successfully');
+    }catch(mountErr){
+      console.error('Mount error:',mountErr);
+      el.innerHTML='<div style="color:red;padding:10px;font-size:12px">Payment form error. Please refresh and try again.</div>';
+    }
   }catch(e){console.error(e);el.innerHTML='';showToast('Connection error. Please try again.')}
 }
 async function placeOrder(){
-  if(!_clientSecret||!stripePaymentEl){showToast('Payment not ready. Please wait.');return}
+  if(!_clientSecret||!stripePaymentEl){
+    showToast('Payment loading... please wait a moment');
+    setTimeout(initStripeElement,500);
+    return;
+  }
   const cta=document.getElementById('chkCta');
   if(cta){cta.disabled=true;cta.textContent='PROCESSING...'}
   const errEl=document.getElementById('stripe-errors');
