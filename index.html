@@ -1199,7 +1199,7 @@ function openCart(){document.getElementById('cart-veil').classList.add('open');d
 function closeCart(){document.getElementById('cart-veil').classList.remove('open');document.getElementById('cart-drawer').classList.remove('open')}
 function addToCart(pid,btn,size){
   const ex=cart.find(i=>i.pid===pid&&i.size===size);
-  if(ex)ex.qty++;else cart.push({pid,size,qty:1});
+  if(ex)ex.qty++;else{const p=PRODS[pid];cart.push({pid,sku:p.sku,name:p.name,price:p.price,size,qty:1});}
   renderCartDrawer();updBadge();showToast('Added to bag ✓');
   if(btn){btn.classList.add('popped');btn.addEventListener('animationend',()=>btn.classList.remove('popped'),{once:true})}
 }
@@ -1437,7 +1437,7 @@ async function initStripeElement(){
   if(!email||!email.includes('@')){showToast('Please enter your email');el.innerHTML='';return}
   if(!studentId||studentId.length<4){showToast('Please enter your Student ID');el.innerHTML='';return}
   if(!cart||cart.length===0){showToast('Cart is empty');el.innerHTML='';return}
-  const items=cart.map(function(i){return{sku:i.sku,size:i.size,quantity:i.qty||1}});
+  const items=cart.map(function(i){return{sku:i.sku||PRODS[i.pid].sku,size:i.size,quantity:i.qty||1}});
   try{
     const r=await fetch(API_URL+'/api/orders/create',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({items,buyer_name:fullName,buyer_email:email.toLowerCase(),buyer_student_id:studentId.toUpperCase(),buyer_phone:phone||null,fulfillment_method:'collection',shipping_name:null,shipping_address:address||null,shipping_postal:postal||null})});
     const data=await r.json();
