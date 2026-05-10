@@ -1368,7 +1368,7 @@ function toggleAc(id){
 
 /* ─── CHECKOUT ─── */
 let chkStep=1,chkDiscount=0;
-function initCheckout(){chkStep=1;chkDiscount=0;setChkStep(1);renderChkAll()}
+function initCheckout(){chkStep=1;chkDiscount=0;stripePaymentEl=null;_clientSecret=null;stripeElements=null;setChkStep(1);renderChkAll()}
 function chkNext(){if(chkStep===1){if(cart.length===0){showToast('Add items first!');return}setChkStep(2)}else if(chkStep===2){placeOrder()}}
 function chkPrev(){if(chkStep>1)setChkStep(chkStep-1)}
 function setChkStep(n){
@@ -1419,7 +1419,7 @@ function applyPromo(){
 }
 function selPay(el){document.querySelectorAll('.pay-opt').forEach(o=>o.classList.remove('selected'));el.classList.add('selected')}
 async function initStripeElement(){
-  if(stripePaymentEl)return;
+  if(stripePaymentEl&&_clientSecret)return;stripePaymentEl=null;
   const el=document.getElementById('stripe-payment-element');
   if(!el)return;
   el.innerHTML='<div style="padding:20px;text-align:center;font-family:monospace;font-size:11px;color:#888;letter-spacing:.1em">LOADING PAYMENT...</div>';
