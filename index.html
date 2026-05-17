@@ -9,7 +9,7 @@
 /* ============================================================ RESET */
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{font-family:'Inter',sans-serif;background:#F9F9F9;color:#1A1A1A;overflow-x:hidden;cursor:default}
+body{font-family:'Inter',sans-serif;background:#F9F9F9;color:#1A1A1A;overflow-x:hidden;max-width:100vw;cursor:default}
 :root{
   --black:#1A1A1A;--white:#F9F9F9;--gray:#888;--light-gray:#E8E8E5;
   --border:rgba(26,26,26,.12);
@@ -513,7 +513,7 @@ a,button{cursor:pointer}
 
 /* ═══ RESPONSIVE ═══ */
 *,*::before,*::after{box-sizing:border-box}
-html,body{overflow-x:hidden;width:100%}
+html,body{overflow-x:hidden;max-width:100vw;width:100%}
 img,video{max-width:100%;height:auto}
 *{-webkit-tap-highlight-color:transparent}
 @media(max-width:1024px){
@@ -530,6 +530,7 @@ img,video{max-width:100%;height:auto}
 @media(max-width:768px){
   nav{padding:0 20px;height:56px}
   .nav-links{display:none}
+  .nav-right>a:not(.cart-trigger):not([onclick*="openMenu"]){font-size:9px;letter-spacing:.05em}
   .nav-right{gap:12px}
   .hero-title{font-size:clamp(36px,10vw,64px);line-height:.93}
   .hero-cta-group{flex-direction:column;align-items:flex-start;gap:10px}
@@ -568,8 +569,10 @@ img,video{max-width:100%;height:auto}
 }
 @media(max-width:480px){
   nav{padding:0 16px;height:52px}
-  .nav-right{gap:8px}
+  .nav-right{gap:12px}
+  .nav-right>a:not(.cart-trigger){display:none}
   .nav-btn{padding:0 10px;font-size:8px;height:32px}
+  .nav-logo-text{font-size:15px}
   .hero-title{font-size:clamp(28px,12vw,48px)}
   .hero-content{padding:0 18px}
   .product-grid{grid-template-columns:1fr}
@@ -602,7 +605,7 @@ img,video{max-width:100%;height:auto}
 
 /* RESPONSIVE */
 *,*::before,*::after{box-sizing:border-box}
-html,body{overflow-x:hidden;width:100%}
+html,body{overflow-x:hidden;max-width:100vw;width:100%}
 img,video{max-width:100%;height:auto}
 *{-webkit-tap-highlight-color:transparent}
 .hero-cta-btn{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.25em;color:#fff;text-transform:uppercase;border:0.5px solid rgba(255,255,255,.3);padding:14px 28px;text-decoration:none;cursor:pointer;transition:all .3s ease;background:rgba(255,255,255,.05);backdrop-filter:blur(8px)}
@@ -619,6 +622,7 @@ img,video{max-width:100%;height:auto}
 @media(max-width:768px){
   nav{padding:0 20px;height:56px}
   .nav-links{display:none}
+  .nav-right>a:not(.cart-trigger):not([onclick*="openMenu"]){font-size:9px;letter-spacing:.05em}
   .nav-right{gap:12px}
   #navLogo{height:24px!important}
   .product-grid{grid-template-columns:repeat(2,1fr);gap:1px;padding:0}
@@ -684,6 +688,21 @@ nav.light .nav-logo-text{will-change:color;font-family:'Playfair Display',Georgi
 button:focus-visible,a:focus-visible{outline:2px solid #1A1A1A;outline-offset:2px}
 
 @keyframes toastIn{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:translateX(0)}}
+
+.sz-chips{flex-wrap:wrap!important}
+
+@media(max-width:600px){
+  .nav-right>a:not(.cart-trigger):not(.mobile-menu-btn){display:none!important}
+  .mobile-menu-btn{display:block!important;font-size:20px;cursor:pointer;padding:0 4px;text-decoration:none;color:inherit}
+  .nav-logo-text{font-size:14px;letter-spacing:.02em}
+  .products-grid{grid-template-columns:1fr!important}
+  .sz-chips{flex-wrap:wrap!important;gap:8px!important}
+  .sz-chip{min-width:44px!important;height:44px!important}
+  .ip-block{padding:0 16px}
+  .pd-layout{flex-direction:column!important}
+  .pd-gallery,.pd-info{width:100%!important;max-width:100%!important}
+  .img-grid{padding:0!important}
+}
 </style>
 <script src="https://js.stripe.com/v3/"></script>
 
@@ -763,6 +782,7 @@ button:focus-visible,a:focus-visible{outline:2px solid #1A1A1A;outline-offset:2p
     <a onclick="nav('tickets')">TICKETS</a>
     <a onclick="nav('contact')">CONTACT</a>
     <a class="cart-trigger" onclick="openCart()">CART <span class="cart-count-badge" id="cartBadge">0</span></a>
+    <a class="mobile-menu-btn" onclick="openMenu()" style="display:none">&#9776;</a>
   </div>
 </nav>
 
