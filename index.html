@@ -140,7 +140,7 @@ nav.light .cart-count-badge{color:#F9F9F9;background:#1A1A1A}
    ============================================================ */
 /* HERO */
 .hero{height:100vh;position:relative;overflow:hidden;cursor:pointer}
-.hero-slide{position:absolute;inset:0;opacity:0;transition:opacity .9s ease;will-change:opacity}
+.hero-slide{position:absolute;inset:0;opacity:0;transition:opacity .9s ease;will-change:opacity;touch-action:pan-y}
 .hero-slide.active{opacity:1}
 .hero-slide img{width:100%;height:100%;object-fit:cover;transform:scale(1.06);transition:transform 6.5s ease;cursor:pointer}
 .hero-slide.active img{transform:scale(1)}
@@ -168,19 +168,19 @@ nav.light .cart-count-badge{color:#F9F9F9;background:#1A1A1A}
 /* FEATURED */
 .featured{padding:80px 40px}
 .section-label{font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--gray);text-align:center;margin-bottom:60px;text-transform:uppercase}
-.products-grid{display:grid;grid-template-columns:1fr 1.2fr 1fr;gap:1px;background:var(--border);border:.5px solid var(--border)}
-.product-card{background:#F9F9F9;overflow:hidden;cursor:pointer;position:relative;transition:background .3s}
+.products-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:.5px solid var(--border);align-items:start}
+.product-card{background:#F9F9F9;overflow:hidden;cursor:pointer;position:relative;transition:background .3s;display:flex;flex-direction:column}
 .product-card:nth-child(2){background:#fff}
 .product-card:hover{background:#fff}
-.product-img-wrap{overflow:hidden;aspect-ratio:3/4;position:relative}
-.product-img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform .75s cubic-bezier(.25,.46,.45,.94)}
+.product-img-wrap{overflow:hidden;aspect-ratio:1/1;position:relative;width:100%}
+.product-img-wrap img{width:100%;height:100%;object-fit:cover;object-position:center top;transition:transform .75s cubic-bezier(.25,.46,.45,.94);display:block}
 .product-card:hover .product-img-wrap img{transform:scale(1.06) translateY(-4px)}
 .qv-layer{position:absolute;inset:0;background:rgba(26,26,26,.45);display:flex;align-items:flex-end;justify-content:center;padding-bottom:28px;opacity:0;transition:opacity .35s var(--ease-expo);pointer-events:none}
 .product-card:hover .qv-layer{opacity:1;pointer-events:all}
 .qv-btn{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;background:#F9F9F9;color:#1A1A1A;border:none;padding:10px 22px;cursor:pointer;transform:translateY(12px);transition:transform .35s var(--ease-expo),background .2s}
 .product-card:hover .qv-btn{transform:translateY(0)}
 .qv-btn:hover{background:#E8E8E5}
-.product-info{padding:20px 24px 28px;border-top:.5px solid var(--border)}
+.product-info{flex:1;padding:20px 24px 28px;border-top:.5px solid var(--border)}
 .product-info h3{font-family:'Inter',sans-serif;font-size:13px;font-weight:600;letter-spacing:.06em;margin-bottom:4px;text-transform:uppercase}
 .product-sku{font-family:var(--mono);font-size:10px;color:var(--gray);margin-bottom:16px}
 .product-footer{display:flex;align-items:center;justify-content:space-between}
@@ -246,12 +246,13 @@ nav.light .cart-count-badge{color:#F9F9F9;background:#1A1A1A}
 .breadcrumb a{color:var(--gray);text-decoration:none;cursor:pointer;transition:color .2s}
 .breadcrumb a:hover{color:#1A1A1A}
 .product-layout{display:grid;grid-template-columns:1fr 420px;gap:0;padding-top:28px;align-items:start;max-width:1400px;margin:0 auto}
-.img-grid{padding:0 20px 0 40px;display:grid;grid-template-columns:1fr 1fr;gap:4px}
-.img-cell{position:relative;overflow:hidden;background:#EFEFED;cursor:pointer}
-.img-cell img{width:100%;display:block;object-fit:cover;transition:transform .8s var(--ease-expo)}
+.img-grid{padding:0 20px 0 40px;display:grid;grid-template-columns:1fr 1fr;gap:6px;align-items:start}
+.img-cell{position:relative;overflow:hidden;background:#EFEFED;cursor:pointer;aspect-ratio:3/4}
+.img-cell.span2{aspect-ratio:4/3}
+.img-cell img{width:100%;height:100%;display:block;object-fit:cover;object-position:center top;transition:transform .8s var(--ease-expo)}
 .img-cell:hover img{transform:scale(1.04)}
-.img-cell.span2{grid-column:span 2}
-.img-cell.span2 img{aspect-ratio:16/9}
+.img-cell.span2{grid-column:span 2;aspect-ratio:3/2}
+.img-cell.span2 img{aspect-ratio:unset}
 .img-cell:not(.span2) img{aspect-ratio:3/4}
 .zoom-tag{position:absolute;bottom:12px;right:12px;width:30px;height:30px;border:.5px solid rgba(255,255,255,.5);background:rgba(0,0,0,.25);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;font-size:15px;color:#fff;opacity:0;transition:opacity .25s;cursor:pointer}
 .img-cell:hover .zoom-tag{opacity:1}
@@ -657,10 +658,32 @@ img,video{max-width:100%;height:auto}
 
 
 /* ── NAV LOGO TEXT ── */
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap');
-.nav-logo-text{font-family:'Playfair Display',Georgia,serif;font-weight:900;font-style:italic;font-size:17px;letter-spacing:-.01em;text-transform:lowercase;color:inherit;white-space:nowrap;transition:color .3s}
-nav.dark .nav-logo-text{font-family:'Playfair Display',Georgia,serif;font-weight:900;font-style:italic;font-size:17px;letter-spacing:-.01em;text-transform:lowercase;color:inherit;white-space:nowrap;transition:color .3s}
-nav.light .nav-logo-text{font-family:'Playfair Display',Georgia,serif;font-weight:900;font-style:italic;font-size:17px;letter-spacing:-.01em;text-transform:lowercase;color:inherit;white-space:nowrap;transition:color .3s}
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=Inter:wght@300;400;500;600;700&display=swap');
+.nav-logo-text{will-change:color;font-family:'Playfair Display',Georgia,serif;font-weight:900;font-style:italic;font-size:17px;letter-spacing:-.01em;text-transform:lowercase;color:inherit;white-space:nowrap;transition:color .3s}
+nav.dark .nav-logo-text{will-change:color;font-family:'Playfair Display',Georgia,serif;font-weight:900;font-style:italic;font-size:17px;letter-spacing:-.01em;text-transform:lowercase;color:inherit;white-space:nowrap;transition:color .3s}
+nav.light .nav-logo-text{will-change:color;font-family:'Playfair Display',Georgia,serif;font-weight:900;font-style:italic;font-size:17px;letter-spacing:-.01em;text-transform:lowercase;color:inherit;white-space:nowrap;transition:color .3s}
+
+@media(max-width:375px){
+  .nav-links{gap:12px}
+  .nav-links a{font-size:9px;letter-spacing:.1em}
+  .nav-logo-text{font-size:14px}
+  .hero-cta{font-size:10px;padding:14px 20px}
+  .featured-grid{align-items:stretch;grid-template-columns:1fr}
+}
+
+@media(max-width:480px){
+  .form-row{flex-direction:column}
+  .form-gr{width:100%!important}
+  .form-input,.form-select{font-size:16px!important;padding:14px 12px}
+  .os-cta{font-size:11px;padding:18px}
+  .checkout-layout{flex-direction:column}
+  .os-sidebar{position:static;width:100%}
+}
+
+:focus-visible{outline:2px solid #1A1A1A;outline-offset:2px}
+button:focus-visible,a:focus-visible{outline:2px solid #1A1A1A;outline-offset:2px}
+
+@keyframes toastIn{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:translateX(0)}}
 </style>
 <script src="https://js.stripe.com/v3/"></script>
 
@@ -696,8 +719,7 @@ nav.light .nav-logo-text{font-family:'Playfair Display',Georgia,serif;font-weigh
           <tr><td><span class="sz-badge-pill">M</span></td><td>21.50"</td><td>21"</td><td>28.75"</td><td>8.65"</td></tr>
           <tr><td><span class="sz-badge-pill">L</span></td><td>22.75"</td><td>22"</td><td>30"</td><td>9.25"</td></tr>
           <tr><td><span class="sz-badge-pill">XL</span></td><td>24"</td><td>23.25"</td><td>31"</td><td>9.65"</td></tr>
-          <tr><td><span class="sz-badge-pill">XXL</span></td><td>25.25"</td><td>24"</td><td>31.50"</td><td>10"</td></tr>
-          <tr><td><span class="sz-badge-pill">XXXL</span></td><td>26.50"</td><td>24.75"</td><td>32"</td><td>10.50"</td></tr>
+
         </tbody>
       </table>
       <p style="text-align:center;font-size:11px;color:#888;margin-top:12px">All measurements in inches · ±0.5" variation · Boxy Oversized Round Neck Tee (Unisex)</p>
@@ -892,8 +914,7 @@ nav.light .nav-logo-text{font-family:'Playfair Display',Georgia,serif;font-weigh
       <tr><td><span class="sz-badge">M</span></td><td>21.50"</td><td>21"</td><td>28.75"</td><td>8.65"</td></tr>
       <tr><td><span class="sz-badge">L</span></td><td>22.75"</td><td>22"</td><td>30"</td><td>9.25"</td></tr>
       <tr><td><span class="sz-badge">XL</span></td><td>24"</td><td>23.25"</td><td>31"</td><td>9.65"</td></tr>
-      <tr><td><span class="sz-badge">XXL</span></td><td>25.25"</td><td>24"</td><td>31.50"</td><td>10"</td></tr>
-      <tr><td><span class="sz-badge">XXXL</span></td><td>26.50"</td><td>24.75"</td><td>32"</td><td>10.50"</td></tr>
+
     </tbody>
   </table>
   <p style="text-align:center;font-size:11px;color:#888;margin-top:10px">All measurements in inches · ±0.5" variation</p>
@@ -955,10 +976,7 @@ nav.light .nav-logo-text{font-family:'Playfair Display',Georgia,serif;font-weigh
 
     <div class="ip-block">
       <button class="add-btn" id="pdAddBtn" onclick="pdDoAdd(this)">Add to Bag</button>
-      <button class="wish-btn">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-        Save to Wishlist
-      </button>
+      
     </div>
     <div class="ip-block accord-wrap">
       <div class="ac-item open" id="ac0">
@@ -1178,17 +1196,17 @@ const IMG_LOGO_BLACK = 'data:image/webp;base64,UklGRvIAAABXRUJQVlA4WAoAAAAQAAAA3
 const PRODS=[
   {id:0,name:'Do It for the Kathai',sub:'[White]',sku:'OR_BT_W',price:19.99,pts:19.99,
    colors:[{n:'White',h:'#F5F4F0',ol:true}],
-   sizes:['XS','S','M','L','XL','XXL','XXXL'],so:[],
+   sizes:['XS','S','M','L','XL'],so:[],
    imgs:[IMG_ZOOM1,IMG_PLOT1,IMG_PLOT2,IMG_TSHIRT1],
    desc:'"Do it for the Kathai" — because sometimes, you just do it for the story. Stay tuned for more updates!'},
   {id:1,name:'Cricket',sub:'[Black]',sku:'OR_OBT_W',price:19.99,pts:19.99,
    colors:[{n:'Black',h:'#1A1A1A'}],
-   sizes:['XS','S','M','L','XL','XXL','XXXL'],so:[],
+   sizes:['XS','S','M','L','XL'],so:[],
    imgs:[IMG_ZOOM3,IMG_CRICKET1,IMG_CRICKET2,IMG_TSHIRT3],
    desc:'"Cricket" — for the ones who grew up with street matches, and a bat that meant everything. A design that celebrates the game woven into our culture. Stay tuned for more updates!'},
   {id:2,name:'Filter Kaapi Club',sub:'[Beige]',sku:'OR_TT_B',price:19.99,pts:19.99,
    colors:[{n:'Dark Beige',h:'#C4A882'}],
-   sizes:['XS','S','M','L','XL','XXL','XXXL'],so:[],
+   sizes:['XS','S','M','L','XL'],so:[],
    imgs:[IMG_ZOOM2,IMG_KAAPI1,IMG_KAAPI2,IMG_TSHIRT2],
    desc:'"Filter Kaapi" — brewed from culture, comfort, and the kind of conversations that hit different over a cup of coffee. Stay tuned for more updates!'},
 ];
@@ -1236,7 +1254,7 @@ function nav(page,arg){
   target.classList.remove('page-enter');
   void target.offsetWidth;
   target.classList.add('page-enter');
-  window.scrollTo({top:0,behavior:'instant'});
+  window.scrollTo({top:0,behavior:'smooth'});
   currentPage=page;
 
   // nav bar style
