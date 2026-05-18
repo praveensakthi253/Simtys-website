@@ -1157,6 +1157,11 @@ nav.light .nav-logo-text{color:#1A1A1A}
 <style id="mobile-extras">
 /* Menu overlay mobile padding fix */
 @media (max-width: 768px) {
+  /* Hide breadcrumb on mobile */
+  .breadcrumb, .pd-breadcrumb {
+    display: none !important;
+  }
+
   .menu-overlay {
     padding: 24px 20px !important;
   }
@@ -1190,6 +1195,23 @@ body.no-scroll {
   button:active, a:active {
     opacity: 0.85;
   }
+
+  /* Product page specific mobile fixes */
+  #page-product .breadcrumb {
+    display: none !important;
+  }
+  #page-product .pd-breadcrumb {
+    display: none !important;
+  }
+  .mobile-back {
+    display: block !important;
+    border-bottom: 0.5px solid rgba(26,26,26,0.1);
+    margin-bottom: 0;
+  }
+  .pd-top {
+    padding: 0 !important;
+  }
+
 }
 </style>
 
