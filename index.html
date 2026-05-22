@@ -447,7 +447,7 @@ nav.light .cart-count-badge{color:#F9F9F9;background:#1A1A1A}
 /* ============================================================
    PAGE: CONTACT
    ============================================================ */
-.contact-hero{padding:100px 40px 80px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:end;border-bottom:.5px solid var(--border)}
+.contact-hero{padding:100px 40px 80px;max-width:760px;margin:0 auto;border-bottom:.5px solid var(--border)}
 .ch-eyebrow{font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--gray);margin-bottom:16px}
 .ch-title{font-family:var(--serif);font-size:clamp(48px,7vw,96px);font-weight:700;line-height:.95;letter-spacing:-.02em}
 .ch-title em{font-style:italic;color:var(--gray);font-size:.7em}
@@ -741,7 +741,7 @@ nav.light .nav-logo-text{color:#1A1A1A}
     <a class="menu-link" onclick="closeMenu();setTimeout(()=>{nav('home');setTimeout(()=>document.getElementById('sizes').scrollIntoView({behavior:'smooth'}),400)},100)">Size Guide</a>
     <a class="menu-link" onclick="openCart();closeMenu()">Cart</a>
   </div>
-  <div class="menu-footer"><span>Instagram</span><span>Twitter</span><span>Facebook</span></div>
+  <div class="menu-footer"><span>Instagram</span></div>
 </div>
 
 <!-- ─────────── NAV ─────────── -->
@@ -749,7 +749,7 @@ nav.light .nav-logo-text{color:#1A1A1A}
   <a class="nav-logo" onclick="nav('home')" style="cursor:pointer;display:flex;align-items:center;text-decoration:none">
   <img id="navLogo" src="data:image/png;base64,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" alt="SIMTYS MERCH" style="height:22px;width:auto;object-fit:contain;transition:opacity .3s">
 </a>
-  <div class="nav-center"><div class="nav-dash"></div><div style="width:20px"></div><div class="nav-dash"></div></div>
+  
   <div class="nav-right">
     <a class="nav-desktop-only" onclick="openMenu()">MENU</a>
     <a class="nav-desktop-only" onclick="nav('home');setTimeout(()=>document.getElementById('featured').scrollIntoView({behavior:'smooth'}),400)">SHOP</a>
@@ -936,7 +936,7 @@ nav.light .nav-logo-text{color:#1A1A1A}
   <div class="sf-brand"><div class="bn">SIMTYS</div><p>Premium tamil-inspired streetwear for those who honour tradition and break it simultaneously.</p></div>
   <div class="sf-col"><h4>Shop</h4><ul><li onclick="nav('product',0)">Do It For The Kathai</li><li onclick="nav('product',1)">Cricket</li><li onclick="nav('product',2)">Filter Kaapi Club</li></ul></div>
   <div class="sf-col"><h4>Info</h4><ul><li onclick="openSzm()">Sizing Guide</li><li>Shipping</li><li>Returns</li></ul></div>
-  <div class="sf-col"><h4>Follow</h4><ul><li>Instagram</li><li>Twitter</li><li>Facebook</li></ul></div>
+  <div class="sf-col"><h4>Follow</h4><ul><li><a href="https://instagram.com/simtys" target="_blank" style="color:inherit;text-decoration:none">@simtys</a></li></ul></div>
   <div class="sf-btm"><p>© 2026 SIMTYS. ALL RIGHTS RESERVED.</p><p>DESIGNED FOR THE MODERN STYLIST</p></div>
 </footer>
 
@@ -1026,11 +1026,37 @@ nav.light .nav-logo-text{color:#1A1A1A}
         <div class="form-section">
           <div class="form-section-title">Contact Information</div>
           <div class="form-row full"><div class="form-group"><label class="form-label">Email Address <span style="color:#e74c3c">*</span></label><input class="form-input" id="chkEmail" type="email" placeholder="you@email.com" required></div></div>
-          <div class="form-row full"><div class="form-group"><label class="form-label">Student ID <span style="color:#e74c3c">*</span></label><input class="form-input" id="chkStudentId" placeholder="e.g. S12345678A" required></div></div>
-          <div class="form-row full"><div class="form-group"><label class="form-label">Phone Number</label><input class="form-input" id="chkPhone" type="tel" placeholder="+65 XXXX XXXX"></div></div>
+          <div class="form-row full"><div class="form-group"><label class="form-label">Telegram ID</label><input class="form-input" id="chkTelegram" type="text" placeholder="@yourusername"></div></div>
+          <div class="form-row full"><div class="form-group">
+            <label class="form-label">Are you a SIM Student? <span style="color:#e74c3c">*</span></label>
+            <div style="display:flex;gap:12px;margin-top:8px">
+              <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:13px">
+                <input type="radio" name="simStudent" id="simYes" value="yes" onchange="toggleSimId()" style="accent-color:#1A1A1A"> Yes
+              </label>
+              <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:13px">
+                <input type="radio" name="simStudent" id="simNo" value="no" onchange="toggleSimId()" style="accent-color:#1A1A1A"> No
+              </label>
+            </div>
+          </div></div>
+          <div class="form-row full" id="simIdRow" style="display:none"><div class="form-group"><label class="form-label">SIM Student ID <span style="color:#e74c3c">*</span></label><input class="form-input" id="chkStudentId" placeholder="e.g. S12345678A"></div></div>
         </div>
+      <!-- STEP 3: Order Confirmed -->
+      <div id="chkStep3" style="display:none;text-align:center;padding:60px 20px">
+        <div style="font-size:56px;margin-bottom:24px">🎉</div>
+        <h2 style="font-family:var(--serif);font-size:clamp(28px,4vw,48px);font-weight:700;margin-bottom:16px;color:#1A1A1A">Order Confirmed!</h2>
+        <p style="font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:#888;margin-bottom:8px">ORDER NUMBER</p>
+        <p id="chkOrderNum" style="font-size:20px;font-weight:700;margin-bottom:28px;font-family:var(--mono);color:#1A1A1A">—</p>
+        <div style="background:#f8f8f8;border:.5px solid #e0e0e0;border-radius:4px;padding:24px;max-width:440px;margin:0 auto 32px;text-align:left">
+          <p style="font-size:14px;color:#333;line-height:1.8;margin:0">
+            Your order has been placed successfully! Your product will be delivered and confirmed with you by email.
+            <br><br>
+            <strong>Please check your inbox and spam folder</strong> for the order confirmation email.
+          </p>
+        </div>
+        <button onclick="nav('home')" style="display:inline-block;padding:16px 40px;background:#1A1A1A;color:#fff;border:none;font-family:var(--mono);font-size:11px;letter-spacing:.2em;cursor:pointer">CONTINUE SHOPPING →</button>
+      </div>
         <div class="form-section">
-          <div class="form-section-title">Shipping Address</div>
+          <div class="form-section-title">Billing Address</div>
           <div class="form-row">
             <div class="form-group"><label class="form-label">First Name</label><input class="form-input" id="chkFirstName" placeholder="Arjun"></div>
             <div class="form-group"><label class="form-label">Last Name</label><input class="form-input" id="chkLastName" placeholder="Murugan"></div>
@@ -1086,8 +1112,8 @@ nav.light .nav-logo-text{color:#1A1A1A}
   </div>
   <div>
     <div class="ch-desc">Questions about your order, sizing, or the next drop? We're a small team and we reply to every message. Reach out through any of these channels.</div>
-    <div class="ch-link-row"><div class="ch-link-icon">✉</div><div><div class="ch-link-label">Email</div><div class="ch-link-val">hello@simtys.sg</div></div><div class="ch-link-arr">→</div></div>
-    <div class="ch-link-row"><div class="ch-link-icon">📸</div><div><div class="ch-link-label">Instagram</div><div class="ch-link-val">@simtys.sg</div></div><div class="ch-link-arr">→</div></div>
+    <div class="ch-link-row"><div class="ch-link-icon">✉</div><div><div class="ch-link-label">Email</div><div class="ch-link-val">simtys48@gmail.com</div></div><div class="ch-link-arr">→</div></div>
+    <div class="ch-link-row"><div class="ch-link-icon">📸</div><div><div class="ch-link-label">Instagram</div><div class="ch-link-val">@simtys</div></div><div class="ch-link-arr">→</div></div>
     <div class="ch-link-row"><div class="ch-link-icon">🏫</div><div><div class="ch-link-label">Campus</div><div class="ch-link-val">SIM University, Clementi</div></div><div class="ch-link-arr">→</div></div>
   </div>
 </div>
@@ -1117,23 +1143,12 @@ nav.light .nav-logo-text{color:#1A1A1A}
     <button class="submit-btn" onclick="ctSubmit()">SEND MESSAGE →</button>
     <div class="form-success" id="ctSuccess"><p>✓ MESSAGE RECEIVED<br>We'll get back to you within 24 hours.<br>Thanks for reaching out!</p></div>
   </div>
-  <div class="faq-panel">
-    <p class="panel-tag">Frequently Asked</p>
-    <h2 class="panel-title">Quick<br>Answers.</h2>
-    <div id="faqList">
-      <div class="faq-accord-item open" id="faq0"><div class="faq-ac-hd" onclick="toggleFaq('faq0')"><span>When will my order ship?</span><span class="faq-ac-icon" style="transform:rotate(45deg)">+</span></div><div class="faq-ac-body" style="max-height:300px"><div class="faq-ac-body-inner">Orders are processed within 1–3 business days. Standard shipping within Singapore takes 3–5 days. You'll receive a tracking number by email once your tee leaves our hands.</div></div></div>
-      <div class="faq-accord-item" id="faq1"><div class="faq-ac-hd" onclick="toggleFaq('faq1')"><span>Can I exchange my size?</span><span class="faq-ac-icon">+</span></div><div class="faq-ac-body"><div class="faq-ac-body-inner">Yes! Unused items in original condition can be exchanged within 14 days of delivery. Size exchanges are free — email us with your order number and the size you need.</div></div></div>
-      <div class="faq-accord-item" id="faq2"><div class="faq-ac-hd" onclick="toggleFaq('faq2')"><span>Do you ship internationally?</span><span class="faq-ac-icon">+</span></div><div class="faq-ac-body"><div class="faq-ac-body-inner">Currently we ship within Singapore and Malaysia. International shipping is coming soon. Join our newsletter to be notified first.</div></div></div>
-      <div class="faq-accord-item" id="faq3"><div class="faq-ac-hd" onclick="toggleFaq('faq3')"><span>Are the tees true to size?</span><span class="faq-ac-icon">+</span></div><div class="faq-ac-body"><div class="faq-ac-body-inner">Yes, our tees are relaxed unisex fit and run true to size. If you prefer an oversized look, we recommend sizing up by one. Check our size guide for exact measurements.</div></div></div>
-      <div class="faq-accord-item" id="faq4"><div class="faq-ac-hd" onclick="toggleFaq('faq4')"><span>When is the next drop?</span><span class="faq-ac-icon">+</span></div><div class="faq-ac-body"><div class="faq-ac-body-inner">We're already working on the next collection. Subscribe to our newsletter to get early access. No spam, ever.</div></div></div>
-      <div class="faq-accord-item" id="faq5"><div class="faq-ac-hd" onclick="toggleFaq('faq5')"><span>Are the designs limited edition?</span><span class="faq-ac-icon">+</span></div><div class="faq-ac-body"><div class="faq-ac-body-inner">Yes. Each design is limited to 50 units per colourway. Once sold out, we won't restock — that's what makes each piece special.</div></div></div>
-    </div>
-  </div>
+  
 </div>
 
 <div class="social-strip">
-  <div class="social-cell"><div class="social-icon">📸</div><div class="social-platform">Instagram</div><div class="social-handle">@simtys.sg</div><div class="social-arrow">→</div></div>
-  <div class="social-cell"><div class="social-icon">🐦</div><div class="social-platform">Twitter / X</div><div class="social-handle">@simtys</div><div class="social-arrow">→</div></div>
+  <div class="social-cell" onclick="window.open('https://instagram.com/simtys','_blank')" style="cursor:pointer"><div class="social-icon">📸</div><div class="social-platform">Instagram</div><div class="social-handle">@simtys</div><div class="social-arrow">→</div></div>
+  
   <div class="social-cell"><div class="social-icon">💬</div><div class="social-platform">WhatsApp</div><div class="social-handle">+65 9123 4567</div><div class="social-arrow">→</div></div>
 </div>
 
@@ -2139,8 +2154,10 @@ function chkNext(){
     const email=(document.getElementById('chkEmail')||{value:''}).value.trim();
     const studentId=(document.getElementById('chkStudentId')||{value:''}).value.trim();
     const firstName=(document.getElementById('chkFirstName')||{value:''}).value.trim();
+    const simYesEl=document.getElementById('simYes'),simNoEl=document.getElementById('simNo');
     if(!email||!email.includes('@')){showToast('Please enter a valid email');document.getElementById('chkEmail').focus();return}
-    if(!studentId||studentId.length<4){showToast('Please enter your Student ID');document.getElementById('chkStudentId').focus();return}
+    if(!simYesEl||(!simYesEl.checked&&!simNoEl.checked)){showToast('Please select if you are a SIM student');return}
+    if(simYesEl&&simYesEl.checked&&(!studentId||studentId.length<4)){showToast('Please enter your SIM Student ID');document.getElementById('chkStudentId').focus();return}
     if(!firstName){showToast('Please enter your first name');document.getElementById('chkFirstName').focus();return}
     // If Stripe not initialized yet, init it then trigger payment after init completes
     if(!_clientSecret||!stripePaymentEl){
@@ -2222,12 +2239,12 @@ async function initStripeElement(){
   const postal=(document.getElementById('chkPostal')||{value:''}).value.trim();
   const fullName=(firstName+' '+lastName).trim()||'Customer';
   if(!email||!email.includes('@')){showToast('Please enter your email');el.innerHTML='';return}
-  if(!studentId||studentId.length<4){showToast('Please enter your Student ID');el.innerHTML='';return}
+  
   if(!firstName){showToast('Please enter your name');el.innerHTML='';return}
   if(!cart||cart.length===0){showToast('Cart is empty');el.innerHTML='';return}
   const items=cart.map(function(i){return{sku:i.sku||PRODS[i.pid].sku,size:i.size,quantity:i.qty||1}});
   try{
-    const r=await fetch(API_URL+'/api/orders/create',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({items,buyer_name:fullName,buyer_email:email.toLowerCase(),buyer_student_id:studentId.toUpperCase(),buyer_phone:phone||null,fulfillment_method:'collection',shipping_name:null,shipping_address:address||null,shipping_postal:postal||null})});
+    const r=await fetch(API_URL+'/api/orders/create',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({items,buyer_name:fullName,buyer_email:email.toLowerCase(),buyer_student_id:(document.getElementById('simYes')&&document.getElementById('simYes').checked&&studentId)?studentId.toUpperCase():null,buyer_telegram:(document.getElementById('chkTelegram')||{value:''}).value.trim()||null,buyer_phone:null,fulfillment_method:'collection',shipping_name:null,shipping_address:address||null,shipping_postal:postal||null})});
     const data=await r.json();
     if(!data.success){el.innerHTML='';showToast(data.error||'Failed to create order');return}
     _clientSecret=data.client_secret;_orderNumber=data.order_number;
@@ -2249,8 +2266,14 @@ async function placeOrder(){
     const{error}=await stripe.confirmPayment({elements:stripeElements,confirmParams:{return_url:window.location.origin+'?order='+_orderNumber,receipt_email:(document.getElementById('chkEmail')||{value:''}).value},redirect:'if_required'});
     if(error){if(errEl)errEl.textContent=error.message;if(cta){cta.disabled=false;cta.textContent='PLACE ORDER →'}showToast(error.message||'Payment failed');return}
     cart=[];renderCartDrawer();updBadge();
-    const onEl=document.getElementById('chkOrderNum');if(onEl)onEl.textContent=_orderNumber;
-    setChkStep(3);showToast('Order confirmed! Check your email ✓');
+    const onEl=document.getElementById('chkOrderNum');if(onEl)onEl.textContent=_orderNumber||('#SIM-2026-'+Math.floor(Math.random()*9000+1000));
+    // Ensure checkout page is visible
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    const chkPage=document.getElementById('page-checkout');
+    if(chkPage)chkPage.classList.add('active');
+    setChkStep(3);
+    setTimeout(()=>window.scrollTo({top:0,behavior:'smooth'}),100);
+    showToast('Order confirmed! Check your email ✓');
     stripePaymentEl=null;stripeElements=null;_clientSecret=null;
   }catch(e){console.error(e);if(cta){cta.disabled=false;cta.textContent='PLACE ORDER →'}showToast('Something went wrong. Please try again.')}
 }
@@ -2258,8 +2281,17 @@ async function placeOrder(){
 
 /* ─── CONTACT ─── */
 function selTopic(el){document.querySelectorAll('.topic-pill').forEach(p=>p.classList.remove('active'));el.classList.add('active')}
+function toggleSimId(){
+  var yes = document.getElementById('simYes');
+  var row = document.getElementById('simIdRow');
+  if(row) row.style.display = (yes && yes.checked) ? 'block' : 'none';
+  var sid = document.getElementById('chkStudentId');
+  if(sid) sid.value = '';
+}
 function ctSubmit(){
   const email=document.getElementById('ctEmail').value,msg=document.getElementById('ctMsg').value;
+  var simYes=document.getElementById('simYes'),simNo=document.getElementById('simNo');
+  if(!simYes||(!simYes.checked&&!simNo.checked)){showToast('Please select if you are a SIM student');return}
   if(!email.includes('@')){showToast('Please enter a valid email.');return}
   if(msg.length<10){showToast('Please write a message.');return}
   showToast('Sending...');setTimeout(()=>{document.getElementById('ctSuccess').classList.add('show');showToast('Message sent ✓')},1200);
