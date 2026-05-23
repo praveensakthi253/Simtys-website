@@ -2244,7 +2244,7 @@ async function initStripeElement(){
   if(!cart||cart.length===0){showToast('Cart is empty');el.innerHTML='';return}
   const items=cart.map(function(i){return{sku:i.sku||PRODS[i.pid].sku,size:i.size,quantity:i.qty||1}});
   try{
-    const r=await fetch(API_URL+'/api/orders/create',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({items,buyer_name:fullName,buyer_email:email.toLowerCase(),buyer_student_id:(document.getElementById('simYes')&&document.getElementById('simYes').checked&&studentId)?studentId.toUpperCase():null,buyer_telegram:(document.getElementById('chkTelegram')||{value:''}).value.trim()||null,buyer_phone:null,fulfillment_method:'collection',shipping_name:null,shipping_address:address||null,shipping_postal:postal||null})});
+    const r=await fetch(API_URL+'/api/orders/create',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({items,buyer_name:fullName,buyer_email:email.toLowerCase(),buyer_student_id:(document.getElementById('simYes')&&document.getElementById('simYes').checked&&studentId)?studentId.toUpperCase():'NON-SIM',buyer_telegram:(document.getElementById('chkTelegram')||{value:''}).value.trim()||null,buyer_phone:null,is_sim_student:!!(document.getElementById('simYes')&&document.getElementById('simYes').checked),fulfillment_method:'collection',shipping_name:null,shipping_address:address||null,shipping_postal:postal||null})});
     const data=await r.json();
     if(!data.success){el.innerHTML='';showToast(data.error||'Failed to create order');return}
     _clientSecret=data.client_secret;_orderNumber=data.order_number;
@@ -2263,11 +2263,34 @@ async function placeOrder(){
   if(errEl)errEl.textContent='';
   try{
     const stripe=getStripe();
-    const{error}=await stripe.confirmPayment({elements:stripeElements,confirmParams:{return_url:window.location.origin+'?order='+_orderNumber,receipt_email:(document.getElementById('chkEmail')||{value:''}).value},redirect:'if_required'});
-    if(error){if(errEl)errEl.textContent=error.message;if(cta){cta.disabled=false;cta.textContent='PLACE ORDER →'}showToast(error.message||'Payment failed');return}
+    const result=await stripe.confirmPayment({
+      elements:stripeElements,
+      confirmParams:{
+        return_url:window.location.origin+'?order='+_orderNumber,
+        receipt_email:(document.getElementById('chkEmail')||{value:''}).value
+      },
+      redirect:'if_required'
+    });
+    // Check for Stripe error
+    if(result.error){
+      if(errEl)errEl.textContent=result.error.message;
+      if(cta){cta.disabled=false;cta.textContent='PLACE ORDER →'}
+      showToast(result.error.message||'Payment failed');
+      return;
+    }
+    // Check payment intent status — MUST be succeeded
+    const pi=result.paymentIntent;
+    if(!pi||pi.status!=='succeeded'){
+      const msg='Payment was not completed. Please try again.';
+      if(errEl)errEl.textContent=msg;
+      if(cta){cta.disabled=false;cta.textContent='PLACE ORDER →'}
+      showToast(msg);
+      return;
+    }
+    // Payment confirmed — show success
     cart=[];renderCartDrawer();updBadge();
-    const onEl=document.getElementById('chkOrderNum');if(onEl)onEl.textContent=_orderNumber||('#SIM-2026-'+Math.floor(Math.random()*9000+1000));
-    // Ensure checkout page is visible
+    const onEl=document.getElementById('chkOrderNum');
+    if(onEl)onEl.textContent=_orderNumber||('#SIM-2026-'+Math.floor(Math.random()*9000+1000));
     document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
     const chkPage=document.getElementById('page-checkout');
     if(chkPage)chkPage.classList.add('active');
@@ -2275,7 +2298,11 @@ async function placeOrder(){
     setTimeout(()=>window.scrollTo({top:0,behavior:'smooth'}),100);
     showToast('Order confirmed! Check your email ✓');
     stripePaymentEl=null;stripeElements=null;_clientSecret=null;
-  }catch(e){console.error(e);if(cta){cta.disabled=false;cta.textContent='PLACE ORDER →'}showToast('Something went wrong. Please try again.')}
+  }catch(e){
+    console.error('placeOrder error:',e);
+    if(cta){cta.disabled=false;cta.textContent='PLACE ORDER →'}
+    showToast('Something went wrong. Please try again.');
+  }
 }
 // card formatters removed
 
