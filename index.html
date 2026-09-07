@@ -1039,22 +1039,8 @@ nav.light .nav-logo-text{color:#1A1A1A}
             </div>
           </div></div>
           <div class="form-row full" id="simIdRow" style="display:none"><div class="form-group"><label class="form-label">SIM Student ID <span style="color:#e74c3c">*</span></label><input class="form-input" id="chkStudentId" placeholder="e.g. S12345678A"></div></div>
+          <div class="form-row full"><div class="form-group"><label class="form-label">Phone Number (optional)</label><input class="form-input" id="chkPhone" type="tel" placeholder="+65 8123 4567"></div></div>
         </div>
-      <!-- STEP 3: Order Confirmed -->
-      <div id="chkStep3" style="display:none;text-align:center;padding:60px 20px">
-        <div style="font-size:56px;margin-bottom:24px">🎉</div>
-        <h2 style="font-family:var(--serif);font-size:clamp(28px,4vw,48px);font-weight:700;margin-bottom:16px;color:#1A1A1A">Order Confirmed!</h2>
-        <p style="font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:#888;margin-bottom:8px">ORDER NUMBER</p>
-        <p id="chkOrderNum" style="font-size:20px;font-weight:700;margin-bottom:28px;font-family:var(--mono);color:#1A1A1A">—</p>
-        <div style="background:#f8f8f8;border:.5px solid #e0e0e0;border-radius:4px;padding:24px;max-width:440px;margin:0 auto 32px;text-align:left">
-          <p style="font-size:14px;color:#333;line-height:1.8;margin:0">
-            Your order has been placed successfully! Your product will be delivered and confirmed with you by email.
-            <br><br>
-            <strong>Please check your inbox and spam folder</strong> for the order confirmation email.
-          </p>
-        </div>
-        <button onclick="nav('home')" style="display:inline-block;padding:16px 40px;background:#1A1A1A;color:#fff;border:none;font-family:var(--mono);font-size:11px;letter-spacing:.2em;cursor:pointer">CONTINUE SHOPPING →</button>
-      </div>
         <div class="form-section">
           <div class="form-section-title">Billing Address</div>
           <div class="form-row">
@@ -1073,7 +1059,35 @@ nav.light .nav-logo-text{color:#1A1A1A}
           <div id="stripe-payment-element" style="margin-top:12px;min-height:60px"></div>
           <div id="stripe-errors" style="color:#e74c3c;font-size:12px;margin-top:8px;font-family:monospace"></div>
         </div>
+      </div>
+      <!-- STEP 3: Order Confirmed -->
+      <div id="chkStep3" style="display:none;text-align:center;padding:60px 20px">
+        <div style="font-size:56px;margin-bottom:24px">🎉</div>
+        <h2 style="font-family:var(--serif);font-size:clamp(28px,4vw,48px);font-weight:700;margin-bottom:16px;color:#1A1A1A">Order Confirmed!</h2>
+        <p style="font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:#888;margin-bottom:8px">ORDER NUMBER</p>
+        <p id="chkOrderNum" style="font-size:20px;font-weight:700;margin-bottom:28px;font-family:var(--mono);color:#1A1A1A">—</p>
+        <div style="background:#f8f8f8;border:.5px solid #e0e0e0;border-radius:4px;padding:24px;max-width:440px;margin:0 auto 32px;text-align:left">
+          <p style="font-size:14px;color:#333;line-height:1.8;margin:0">
+            Your order has been placed successfully! Your product will be delivered and confirmed with you by email.
+            <br><br>
+            <strong>Please check your inbox and spam folder</strong> for the order confirmation email.
+          </p>
         </div>
+        <button onclick="nav('home')" style="display:inline-block;padding:16px 40px;background:#1A1A1A;color:#fff;border:none;font-family:var(--mono);font-size:11px;letter-spacing:.2em;cursor:pointer">CONTINUE SHOPPING →</button>
+      </div>
+    </div>
+    <div class="order-summary">
+      <div class="os-title">Order Summary</div>
+      <div class="os-items" id="chkOsItems"></div>
+      <div class="os-rows">
+        <div class="os-row"><span>Subtotal</span><span id="chkSubtotal">SGD 0.00</span></div>
+        <div class="os-row"><span>Shipping</span><span id="chkShipping">—</span></div>
+        <div class="os-row"><span>Discount</span><span id="chkDiscount">—</span></div>
+        <div class="os-row total"><span>Total</span><span id="chkTotal">SGD 0.00</span></div>
+      </div>
+      <div class="promo-wrap">
+        <input class="promo-input" id="promoInput" type="text" placeholder="Promo code">
+        <button class="promo-btn" onclick="applyPromo()">APPLY</button>
       </div>
       <button class="os-cta" id="chkCta" onclick="chkNext()">CONTINUE →</button>
       <button class="os-back" id="chkBack" style="display:none" onclick="chkPrev()">← BACK</button>
@@ -1082,6 +1096,7 @@ nav.light .nav-logo-text{color:#1A1A1A}
   </div>
 </div>
 </div><!-- /page-checkout -->
+
 
 <!-- ================================================================
      PAGE: CONTACT
@@ -2350,6 +2365,17 @@ function doSubscribe(){const v=document.getElementById('nlInput').value;if(!v.in
 
 /* ─── TOAST ─── */
 function showToast(msg){const w=document.getElementById('toast-wrap');const t=document.createElement('div');t.className='toast';t.textContent=msg;w.appendChild(t);setTimeout(()=>{t.classList.add('out');t.addEventListener('animationend',()=>t.remove())},2200)}
+
+/* ─── TICKETS NOTIFY ─── */
+function notifyTickets(){
+  const input=document.getElementById('ticketEmail');
+  const email=(input.value||'').trim();
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){showToast('Please enter a valid email');return}
+  const msg=document.getElementById('ticketNotifyMsg');
+  msg.style.display='block';
+  input.value='';
+  showToast("You're on the list ✓");
+}
 
 /* ─── SCROLL REVEAL ─── */
 function reInitReveals(){
