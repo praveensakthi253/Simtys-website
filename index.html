@@ -702,7 +702,7 @@ nav.light .nav-logo-text{color:#1A1A1A}
       <button class="szm-tab" onclick="szmTab(this,'howto')">How to Measure</button>
     </div>
     <div class="szm-pane on" id="pane-meas">
-      <p style="font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--gray);margin-bottom:18px">All measurements in centimetres (cm)</p>
+      <p style="font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--gray);margin-bottom:18px">All measurements in inches (in)</p>
       <table class="sz-table">
         <thead><tr><th>Size</th><th>Chest</th><th>Shoulder</th><th>Body Length</th><th>Sleeve</th></tr></thead>
         <tbody>
@@ -713,7 +713,6 @@ nav.light .nav-logo-text{color:#1A1A1A}
           <tr><td><span class="sz-badge-pill">XL</span></td><td>24"</td><td>23.25"</td><td>31"</td><td>9.65"</td></tr>
         </tbody>
       </table>
-      <p style="text-align:center;font-size:11px;color:#888;margin-top:12px">All measurements in inches · ±0.5" variation · Boxy Oversized Round Neck Tee</p>
       <p style="text-align:center;font-size:11px;color:#888;margin-top:12px">All measurements in inches · ±0.5" variation · Boxy Oversized Round Neck Tee (Unisex)</p>
       <p class="sz-note">Relaxed unisex fit. Prefer fitted → size down. Oversized look → size up one.</p>
     </div>
@@ -735,8 +734,6 @@ nav.light .nav-logo-text{color:#1A1A1A}
   <div class="menu-links">
     <a class="menu-link" onclick="closeMenu();setTimeout(()=>nav('home'),100)">Home</a>
     <a class="menu-link" onclick="closeMenu();setTimeout(()=>{nav('home');setTimeout(()=>document.getElementById('featured').scrollIntoView({behavior:'smooth'}),400)},100)">Shop</a>
-    <a class="menu-link" onclick="closeMenu();setTimeout(()=>nav('tickets'),100)">Tickets</a>
-    <a class="menu-link" onclick="closeMenu();setTimeout(()=>nav('contact'),100)">Contact</a>
     <a class="menu-link" onclick="closeMenu();setTimeout(()=>{nav('home');setTimeout(()=>document.getElementById('sizes').scrollIntoView({behavior:'smooth'}),400)},100)">Size Guide</a>
     <a class="menu-link" onclick="openCart();closeMenu()">Cart</a>
   </div>
@@ -752,8 +749,6 @@ nav.light .nav-logo-text{color:#1A1A1A}
   <div class="nav-right">
     <a class="nav-desktop-only" onclick="openMenu()">MENU</a>
     <a class="nav-desktop-only" onclick="nav('home');setTimeout(()=>document.getElementById('featured').scrollIntoView({behavior:'smooth'}),400)">SHOP</a>
-    <a class="nav-desktop-only" onclick="nav('tickets')">TICKETS</a>
-    <a class="nav-desktop-only" onclick="nav('contact')">CONTACT</a>
     <a class="cart-trigger" onclick="openCart()">CART <span class="cart-count-badge" id="cartBadge">0</span></a>
   
     <button class="nav-hamburger" onclick="openMenu()">&#9776;</button>
@@ -872,7 +867,7 @@ nav.light .nav-logo-text{color:#1A1A1A}
     <p class="story-eyebrow">Our Philosophy</p>
     <h2 class="story-heading">Where Heritage<br>Meets Culture</h2>
     <p class="story-body">Our designs blend Tamil culture and identity with everyday streetwear, turning familiar elements of our community into pieces that feel personal and effortlessly wearable.</p>
-    <a class="story-link" onclick="nav('contact')">KNOW MORE ABOUT US <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#1A1A1A" stroke-width="1.5"><path d="M2 7h10M7 2l5 5-5 5"/></svg></a>
+    <a class="story-link" href="https://instagram.com/simtys" target="_blank" style="text-decoration:none">KNOW MORE ABOUT US <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#1A1A1A" stroke-width="1.5"><path d="M2 7h10M7 2l5 5-5 5"/></svg></a>
   </div>
   <div class="story-img reveal-right">
     <img id="storyImg" alt="simtys story" id="storyParallaxImg">
@@ -1090,94 +1085,12 @@ nav.light .nav-logo-text{color:#1A1A1A}
       </div>
       <button class="os-cta" id="chkCta" onclick="chkNext()">CONTINUE →</button>
       <button class="os-back" id="chkBack" style="display:none" onclick="chkPrev()">← BACK</button>
-      <div class="os-note">🔒 Secure checkout · Free shipping over SGD 60</div>
+      <div class="os-note">🔒 Secure checkout · Free pickup, no shipping</div>
     </div>
   </div>
 </div>
 </div><!-- /page-checkout -->
 
-
-<!-- ================================================================
-     PAGE: CONTACT
-     ================================================================ -->
-
-<div class="page" id="page-tickets">
-  <div style="max-width:700px;margin:0 auto;padding:120px 40px 80px">
-    <p style="font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#888;margin-bottom:16px">SIMTYS PRESENTS</p>
-    <h1 style="font-family:var(--serif);font-size:clamp(36px,6vw,72px);font-weight:700;line-height:1.05;margin-bottom:24px">IYAL 2026</h1>
-    <p style="font-size:16px;color:#555;line-height:1.7;max-width:480px;margin-bottom:48px">Coming soon.</p>
-    <div style="border:.5px solid #ddd;padding:32px;margin-bottom:32px">
-      <p style="font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#aaa;margin-bottom:8px">GET NOTIFIED</p>
-      <div style="display:flex;gap:0;max-width:420px">
-        <input id="ticketEmail" type="email" placeholder="your@email.com" style="flex:1;padding:14px 16px;border:.5px solid #1A1A1A;border-right:none;font-size:13px;outline:none;background:#fff">
-        <button onclick="notifyTickets()" style="padding:14px 24px;background:#1A1A1A;color:#fff;font-family:var(--mono);font-size:11px;letter-spacing:.15em;border:none;cursor:pointer">NOTIFY ME</button>
-      </div>
-      <p id="ticketNotifyMsg" style="font-size:12px;color:#888;margin-top:12px;display:none">✓ You're on the list!</p>
-    </div>
-    <button onclick="nav('home')" style="font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;background:none;border:none;cursor:pointer;text-decoration:underline;color:#888">← BACK TO SHOP</button>
-  </div>
-</div>
-<div class="page" id="page-contact">
-
-<div class="contact-hero">
-  <div>
-    <div class="ch-eyebrow">SIM Tamil Youth Society</div>
-    <div class="ch-title">Get in<br><em>Touch.</em></div>
-  </div>
-  <div>
-    <div class="ch-desc">Questions about your order, sizing, or the next drop? We're a small team and we reply to every message. Reach out through any of these channels.</div>
-    <div class="ch-link-row"><div class="ch-link-icon">✉</div><div><div class="ch-link-label">Email</div><div class="ch-link-val">simtys48@gmail.com</div></div><div class="ch-link-arr">→</div></div>
-    <div class="ch-link-row"><div class="ch-link-icon">📸</div><div><div class="ch-link-label">Instagram</div><div class="ch-link-val">@simtys</div></div><div class="ch-link-arr">→</div></div>
-    <div class="ch-link-row"><div class="ch-link-icon">🏫</div><div><div class="ch-link-label">Campus</div><div class="ch-link-val">SIM University, Clementi</div></div><div class="ch-link-arr">→</div></div>
-  </div>
-</div>
-
-<div class="contact-main">
-  <div class="form-panel">
-    <p class="panel-tag">Send a Message</p>
-    <h2 class="panel-title">What's on<br>your mind?</h2>
-    <div class="topic-pills">
-      <button class="topic-pill active" onclick="selTopic(this)">Order Issue</button>
-      <button class="topic-pill" onclick="selTopic(this)">Size Help</button>
-      <button class="topic-pill" onclick="selTopic(this)">Returns</button>
-      <button class="topic-pill" onclick="selTopic(this)">Wholesale</button>
-      <button class="topic-pill" onclick="selTopic(this)">Other</button>
-    </div>
-    <div class="f-row-2">
-      <div class="f-group"><label class="f-label">First Name</label><input class="f-input" placeholder="Arjun"></div>
-      <div class="f-group"><label class="f-label">Last Name</label><input class="f-input" placeholder="Murugan"></div>
-    </div>
-    <div class="f-group"><label class="f-label">Email Address</label><input class="f-input" type="email" placeholder="you@email.com" id="ctEmail"></div>
-    <div class="f-group" style="margin-top:24px"><label class="f-label">Order Number (if applicable)</label><input class="f-input" placeholder="#SIM-2026-XXXX"></div>
-    <div class="f-group" style="margin-top:24px">
-      <label class="f-label">Your Message</label>
-      <textarea class="f-input" placeholder="Tell us what's up..." id="ctMsg" maxlength="500" oninput="document.getElementById('ctCount').textContent=this.value.length"></textarea>
-      <div class="f-counter"><span id="ctCount">0</span> / 500</div>
-    </div>
-    <button class="submit-btn" onclick="ctSubmit()">SEND MESSAGE →</button>
-    <div class="form-success" id="ctSuccess"><p>✓ MESSAGE RECEIVED<br>We'll get back to you within 24 hours.<br>Thanks for reaching out!</p></div>
-  </div>
-  
-</div>
-
-<div class="social-strip">
-  <div class="social-cell" onclick="window.open('https://instagram.com/simtys','_blank')" style="cursor:pointer"><div class="social-icon">📸</div><div class="social-platform">Instagram</div><div class="social-handle">@simtys</div><div class="social-arrow">→</div></div>
-  
-  <div class="social-cell"><div class="social-icon">💬</div><div class="social-platform">WhatsApp</div><div class="social-handle">+65 9123 4567</div><div class="social-arrow">→</div></div>
-</div>
-
-<div class="location-band">
-  <div><div class="loc-tag">Find Us</div><div class="loc-title">SIM University<br>Tamil Club</div><div class="loc-body">461 Clementi Road<br>Singapore 599491<br><br>Mon – Fri, 12pm – 6pm</div></div>
-  <div class="loc-map">
-    <div class="map-grid-h" style="top:25%"></div><div class="map-grid-h" style="top:50%"></div><div class="map-grid-h" style="top:75%"></div>
-    <div class="map-grid-v" style="left:25%"></div><div class="map-grid-v" style="left:50%"></div><div class="map-grid-v" style="left:75%"></div>
-    <div class="map-pin"></div>
-    <div style="position:absolute;bottom:14px;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:9px;letter-spacing:.15em;color:rgba(255,255,255,.35);text-transform:uppercase">SIM UNIVERSITY · CLEMENTI</div>
-  </div>
-</div>
-
-
-</div><!-- /page-contact -->
 
 <!-- ================================================================
      JAVASCRIPT
@@ -2140,7 +2053,6 @@ function loadProduct(pid){
     card.addEventListener('click',e=>{if(e.target.tagName!=='BUTTON')nav('product',rp.id)});
     rg.appendChild(card);
   });
-  addHover('.img-cell,.rel-card,.sz-chip,.color-chip,.ac-hd');
 }
 function pdDoAdd(btn){
   if(!pdSelSz){const sc=document.getElementById('pdSizeChips');sc.style.animation='shake .4s';sc.addEventListener('animationend',()=>sc.style.animation='',{once:true});showToast('Please select a size');return}
@@ -2223,7 +2135,7 @@ function renderChkAll(){
     <div class="os-item-price">SGD ${(p.price*item.qty).toFixed(2)}</div>`;osItems.appendChild(d);
   });
   const sub=cart.reduce((s,i)=>s+PRODS[i.pid].price*i.qty,0);
-  const ship=sub>=60?0:4.50;const tot=sub+ship-chkDiscount;
+  const ship=0;const tot=sub+ship-chkDiscount;
   document.getElementById('chkSubtotal').textContent='SGD '+sub.toFixed(2);
   document.getElementById('chkShipping').textContent=ship===0?'FREE':'SGD '+ship.toFixed(2);
   document.getElementById('chkDiscount').textContent=chkDiscount?'-SGD '+chkDiscount.toFixed(2):'—';
@@ -2320,22 +2232,12 @@ async function placeOrder(){
 }
 // card formatters removed
 
-/* ─── CONTACT ─── */
-function selTopic(el){document.querySelectorAll('.topic-pill').forEach(p=>p.classList.remove('active'));el.classList.add('active')}
 function toggleSimId(){
   var yes = document.getElementById('simYes');
   var row = document.getElementById('simIdRow');
   if(row) row.style.display = (yes && yes.checked) ? 'block' : 'none';
   var sid = document.getElementById('chkStudentId');
   if(sid) sid.value = '';
-}
-function ctSubmit(){
-  const email=document.getElementById('ctEmail').value,msg=document.getElementById('ctMsg').value;
-  var simYes=document.getElementById('simYes'),simNo=document.getElementById('simNo');
-  if(!simYes||(!simYes.checked&&!simNo.checked)){showToast('Please select if you are a SIM student');return}
-  if(!email.includes('@')){showToast('Please enter a valid email.');return}
-  if(msg.length<10){showToast('Please write a message.');return}
-  showToast('Sending...');setTimeout(()=>{document.getElementById('ctSuccess').classList.add('show');showToast('Message sent ✓')},1200);
 }
 function toggleFaq(id){
   const item=document.getElementById(id),wasOpen=item.classList.contains('open');
@@ -2364,17 +2266,6 @@ function doSubscribe(){const v=document.getElementById('nlInput').value;if(!v.in
 
 /* ─── TOAST ─── */
 function showToast(msg){const w=document.getElementById('toast-wrap');const t=document.createElement('div');t.className='toast';t.textContent=msg;w.appendChild(t);setTimeout(()=>{t.classList.add('out');t.addEventListener('animationend',()=>t.remove())},2200)}
-
-/* ─── TICKETS NOTIFY ─── */
-function notifyTickets(){
-  const input=document.getElementById('ticketEmail');
-  const email=(input.value||'').trim();
-  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){showToast('Please enter a valid email');return}
-  const msg=document.getElementById('ticketNotifyMsg');
-  msg.style.display='block';
-  input.value='';
-  showToast("You're on the list ✓");
-}
 
 /* ─── SCROLL REVEAL ─── */
 function reInitReveals(){
